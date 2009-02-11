@@ -34,15 +34,14 @@ h2. Associations
 
 Take the row following for example:
 
-<pre>
-"Curve21","South-East England","www.curve21.com","info@curve21.com"
+<pre>"Curve21","South-East England","www.curve21.com","info@curve21.com"</pre>
+
 'South-East England' is this organisation's region. If Organisation has_many :regions then we need a way to look up the region in our database using the name specified in this row. Importer achieves this using Proc objects:
 
-Organisation.import(:from => '/path/to/file.csv', :map => {'region' => 'region_id'}, 
-                            :associations => {'region_id' => lambda {|a| Region.find_by_name(a) } }
-</pre>
+<pre>Organisation.import(:from => '/path/to/file.csv', :map => {'region' => 'region_id'}, 
+                            :associations => {'region_id' => lambda {|a| Region.find_by_name(a) } }</pre>
 
-Currently, this is only designed to support only belongsto and hasone relationships.
+Currently, this is only designed to support only belongs_to and has_one relationships.
 
 h2. Error handling
 
